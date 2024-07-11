@@ -4,18 +4,20 @@ from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     rooms  = Room.objects.all()
     context = {"rooms":rooms}
     return render(request, "base/home.html",context=context)
 
+@login_required(login_url="home")
 def room_list(request):
     rooms = Room.objects.all()
     context = {"rooms":rooms}
     return render(request, "base/rooms.html",context=context)
 
-
+@login_required(login_url="home")
 def create_room(request):
     form = RoomForm()
     if request.method == "POST":
@@ -62,8 +64,11 @@ def registerPage(request):
             messages.error("An error has occured during registration")
     context = {"page":page, "form" : form}
     return render(request,"base/login.html",context=context)
-
-
 def logoutUser(request):
     logout(request)
     return redirect("home")
+
+@login_required(login_url="home")
+def chatRoom(request,pk):
+
+    return render(request,"base/chat_room.html")

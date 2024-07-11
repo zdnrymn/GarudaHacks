@@ -7,5 +7,6 @@ urlpatterns = [
     path("roomcreation/",views.create_room,name="create_room"),
     path("login/",views.loginPage, name="login"),
     path("logout/",views.logoutUser,name="logout"),
-    path("register/",views.registerPage,name="register")
+    path("register/",views.registerPage,name="register"),
+    path("chatroom/<int:pk>",views.chatRoom,name="chatroom")
 ]

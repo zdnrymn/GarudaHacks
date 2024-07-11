@@ -12,12 +12,16 @@
 
     <input type="submit" value="Login">
 </form>
+<p>Haven't Signed Up Yet?</p>
+<a href="{% url 'register' %}">Sign Up</a>
 {% else %}
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="post">
 </form>
+<p>Already Signed Up Yet?</p>
+<a href="{% url 'login' %}">Sign In</a>
 {% endif %}
 {% if messages %}
 <ul class="messages">

@@ -2,19 +2,21 @@
 
 
 {% block content %}
-    <ul>
+<ul>
     {% for room in rooms %}
     <div class="card">
-        <li>
-            {{room}} 
-            <br>
-            {{room.description}}
+        <a href="">
+            <li>
+                {{room}}
+                <br>
+                {{room.description}}
+        </a>
         </li>
-    </div>    
-    {% endfor %}
-    </ul>
-    <div class="create_button">
-        <a href="{% url 'create_room' %}">Create Room</a>
     </div>
+    {% endfor %}
+</ul>
+<div class="create_button">
+    <a href="{% url 'create_room' %}">Create Room</a>
+</div>
 
 {% endblock content %}
