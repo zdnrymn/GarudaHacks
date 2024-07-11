@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- for room in rooms -->
-</body>
-</html>
+{% extends 'base/navbar.html' %}
+
+
+{% block content %}
+    <ul>
+    {% for room in rooms %}
+    <div class="card">
+        <li>
+            {{room}} 
+            <br>
+            {{room.description}}
+        </li>
+    </div>    
+    {% endfor %}
+    </ul>
+    <div class="create_button">
+        <a href="{% url 'create_room' %}">Create Room</a>
+    </div>
+
+{% endblock content %}
