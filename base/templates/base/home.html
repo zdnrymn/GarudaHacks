@@ -2,17 +2,26 @@
 {% load static %}
 
 {% block content %}
+
 <head>
     <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 </head>
 
 <div class="page_1">
     <h1>Connect</h1>
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    <li><a href="">COMMUNITIES</a></li>
+    <li>
+        <form action="{% url 'room_list' %}">
+            <input type="text" name="q" placeholder="Search Room...">
+        </form>
+    </li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'register' %}">Register</a></li>
+    {% endif %}
 </div>
-<div class="page_2">
-    <!-- Room lists  -->
-</div>
+
 
 {% endblock content %}
-
-
