@@ -2,5 +2,9 @@
 
 {% block content %}
 <h2>{{room.title}}</h2>
-<div class="comments"></div>
+<div class="comments">
+    {% for message in chat_messages %}
+    {{message.content}}
+    {% endfor %}
+</div>
 {% endblock content %}
