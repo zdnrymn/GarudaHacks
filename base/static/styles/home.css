@@ -1,0 +1,13 @@
+*{
+    background-color:black;
+    background-image: url(diversit.png);
+    background-size: auto;
+    object-fit: cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    word-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
