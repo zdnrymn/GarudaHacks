@@ -5,7 +5,12 @@
 <div class="comments">
     {% for message in chat_messages %}
     <hr>
+    
     <p>{{message.content}} - @{{message.user}}</p>
+    {% if request.user == message.user %}
+    <a href="">Edit</a>
+    <a href="">Delete</a>
+    {% endif %}
     {% endfor %}
 </div>
 

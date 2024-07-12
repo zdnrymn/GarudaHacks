@@ -30,6 +30,18 @@ def create_room(request):
             return redirect('room_list')
     context = {"form":form}
     return render(request, "base/form.html",context=context)
+@login_required(login_url="home")
+def edit_room(request,pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+    if request.method == 'POST':
+        form = RoomForm(request.POST , instance=room)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.user = request.user
+            room.save()
+
+
 
 # def logoutuser(request):
 def loginPage(request):
@@ -62,7 +74,7 @@ def registerPage(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error("An error has occured during registration")
+            messages.error(request,"An error has occured during registration")
     context = {"page":page, "form" : form}
     return render(request,"base/login.html",context=context)
 def logoutUser(request):
