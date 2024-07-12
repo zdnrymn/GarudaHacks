@@ -73,5 +73,12 @@ def logoutUser(request):
 def chatRoom(request,pk):
     room = Room.objects.get(id=pk)
     chat_messages = room.message_set.all()
+    if request.method == "POST":
+        msg = Message.objects.create(
+            user = request.user,
+            room = room,
+            content = request.POST.get("content")
+        )
+        return redirect("chatroom", pk=room.id)
     context={"room":room,"chat_messages":chat_messages}
     return render(request,"base/chat_room.html",context=context)

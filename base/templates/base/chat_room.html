@@ -4,7 +4,17 @@
 <h2>{{room.title}}</h2>
 <div class="comments">
     {% for message in chat_messages %}
-    {{message.content}}
+    <hr>
+    <p>{{message.content}} - @{{message.user}}</p>
     {% endfor %}
 </div>
+
+{% if request.user.is_authenticated %}
+<div class="comment-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Share your thoughts..." name="content">
+    </form>
+</div>
+{% endif %}
 {% endblock content %}
