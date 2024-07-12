@@ -13,7 +13,8 @@ def home(request):
 
 @login_required(login_url="home")
 def room_list(request):
-    rooms = Room.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+    rooms = Room.objects.filter(title__contains=q)
     context = {"rooms":rooms}
     return render(request, "base/rooms.html",context=context)
 
@@ -70,5 +71,7 @@ def logoutUser(request):
 
 @login_required(login_url="home")
 def chatRoom(request,pk):
-
-    return render(request,"base/chat_room.html")
+    room = Room.objects.get(id=pk)
+    chat_messages = room.message_set.all()
+    context={"room":room,"chat_messages":chat_messages}
+    return render(request,"base/chat_room.html",context=context)
